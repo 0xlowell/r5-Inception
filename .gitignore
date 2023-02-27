@@ -1,2 +1,5 @@
 srcs/wordpress
 srcs/.env
+.DS_Store
+
+.idea/

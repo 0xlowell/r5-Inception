@@ -1,4 +1,4 @@
-all:
+all: build up
 
 build:
 	@docker-compose -f srcs/docker-compose.yml build
@@ -15,4 +15,11 @@ debug: build
 stop:
 	@docker-compose -f srcs/docker-compose.yml stop
 
+prune:
+	@docker system prune -a
+
+re: stop down build up
+	@docker ps
 clean: stop down
+
+.PHONY: all build up down debug stop clean
