@@ -1,15 +1,12 @@
 # Use an official Nginx runtime as a parent image
 FROM debian:latest
 
-RUN apt update -y && apt upgrade -y && \
-apt install -y wget curl nginx openssl
-
-# Copy custom configuration file from the current directory to the container
-
-# Set the working directory to the default Nginx document root directory
+RUN apt update -y && apt upgrade -y
+RUN apt install -y wget curl nginx openssl
 
 RUN mkdir -p /etc/nginx/ssl
 
+# Create ssl certif with openssl
 RUN openssl req -newkey rsa:4096 -x509 -sha256 -days 365 -nodes \
     -out /etc/nginx/ssl/cert.pem \
     -keyout /etc/nginx/ssl/cert.key \

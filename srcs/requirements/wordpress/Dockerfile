@@ -20,10 +20,10 @@ COPY ./apache2.conf /etc/apache2/apache2.conf
 RUN chmod -R 755 /var/www/* #html/wordpress/*
 RUN chown -R www-data:www-data /var/www/* #html/wordpress/*
 
-#COPY ./wp-config-sample.php /var/www/html/wordpress/wp-config.php
+COPY ./wp-config-sample.php /var/www/html/wordpress/wp-config.php
 
 #COPY run.sh run.sh
 #RUN chmod +x run.sh
 
 #Launcher
-ENTRYPOINT ["/bin/bash", "conf.sh"]
+ENTRYPOINT ["/bin/bash", "/tmp/conf.sh"]
