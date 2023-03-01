@@ -1,5 +1,5 @@
 # Use an official Nginx runtime as a parent image
-FROM debian:latest
+FROM debian:buster
 
 RUN apt update -y && apt upgrade -y
 RUN apt install -y wget curl nginx openssl

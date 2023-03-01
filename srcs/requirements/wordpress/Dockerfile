@@ -15,7 +15,6 @@ WORKDIR /var/www/html/wordpress
 #
 COPY ./conf.sh /tmp/conf.sh
 COPY ./www.conf /etc/php/7.3/www.conf
-COPY ./apache2.conf /etc/apache2/apache2.conf
 #
 RUN chmod -R 755 /var/www/* #html/wordpress/*
 RUN chown -R www-data:www-data /var/www/* #html/wordpress/*
