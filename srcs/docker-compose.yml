@@ -18,11 +18,7 @@ services:
   wordpress:
     build: ./requirements/wordpress
     container_name: wordpress
-    environment:
-      WORDPRESS_DB_HOST: db
-      WORDPRESS_DB_USER: user_wp
-      WORDPRESS_DB_PASSWORD: ok
-      WORDPRESS_DB_NAME: wordpress_db
+    env_file: .env
     volumes:
       - wordpress:/var/www/html
     networks:
@@ -32,12 +28,7 @@ services:
   mariadb:
     build: ./requirements/mariadb
     container_name: mariadb
-    image: mariadb
-    environment:
-      MARIADB_ROOT_PASSWORD: rooted
-      MARIADB_DATABASE: wordpress_db
-      MARIADB_USER: user_wp
-      MARIADB_PASSWORD: ok
+    env_file: .env
     volumes:
     - mariadb:/var/lib/mysql
     networks:
