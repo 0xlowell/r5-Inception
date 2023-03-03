@@ -1,5 +1,7 @@
 <?php
 
+// Get .env variables with some tricks
+
 // ** Database settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
 define( 'WORDPRESS_DB_NAME', 'wordpress_db' );

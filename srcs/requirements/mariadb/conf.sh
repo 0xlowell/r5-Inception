@@ -1,0 +1,8 @@
+
+service mysql start
+
+mysql << EOF
+CREATE DATABASE IF NOT EXISTS $MARIADB_DATABASE DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+
+EOF
