@@ -1,28 +1,16 @@
-<?php
 
-// Get .env variables with some tricks
+define( 'DB_NAME', getenv('$MARIADB_NAME') ); // Example MySQL database name
 
-// ** Database settings - You can get this info from your web host ** //
-/** The name of the database for WordPress */
-define( 'WORDPRESS_DB_NAME', 'wordpress_db' );
+define( 'DB_USER', getenv('$MARIADB_USER') ); // Example MySQL username
 
-/** Database username */
-//define( 'DB_USER', 'user_wp' );
-define( 'WORDPRESS_DB_USER', 'user_wp' );
+define( 'DB_PASSWORD', getenv('$MARIADB_PASSWORD') ); // Example MySQL password
 
-/** Database password */
-//define( 'DB_PASSWORD', 'ok' );
-define( 'WORDPRESS_DB_PASSWORD', 'ok' );
+define( 'DB_HOST',  getenv('$MARIADB_NAME') ); // Example MySQL Database host
 
-/** Database hostname */
-//define( 'DB_HOST', 'db' );
-define( 'WORDPRESS_DB_HOST', 'db' );
-
-/** Database charset to use in creating database tables. */
 define( 'DB_CHARSET', 'utf8' );
 
-/** The database collate type. Don't change this if in doubt. */
 define( 'DB_COLLATE', '' );
+
 
 /**#@+
  * Authentication unique keys and salts.

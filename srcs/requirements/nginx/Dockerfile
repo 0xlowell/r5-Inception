@@ -14,9 +14,10 @@ RUN openssl req -newkey rsa:4096 -x509 -sha256 -days 365 -nodes \
 
 RUN mkdir -p /run/nginx
 
-# Expose the default Nginx HTTP port (80)
+# Expose the Nginx port 443
 EXPOSE 443
 
+# nginx config
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Start Nginx in the foreground when the container is started

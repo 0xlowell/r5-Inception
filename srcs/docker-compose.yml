@@ -5,12 +5,24 @@ services:
   nginx:
     build: requirements/nginx
     container_name: nginx
-    depends_on:
-      - wordpress
-    ports:
-      - "443:443"
+    env_file:
+      - .env
     volumes:
       - wordpress:/var/www/html
+    ports:
+      - "443:443"
+    networks:
+      - network42
+    restart: on-failure
+
+
+  mariadb:
+    build: ./requirements/mariadb
+    container_name: mariadb
+    env_file:
+      - .env
+    volumes:
+      - mariadb:/var/lib/mysqld
     networks:
       - network42
     restart: on-failure
@@ -18,22 +30,14 @@ services:
   wordpress:
     build: ./requirements/wordpress
     container_name: wordpress
-    env_file: .env
+    depends_on:
+      - mariadb
+    env_file:
+     - .env
     volumes:
-      - wordpress:/var/www/html
+     - wordpress:/var/www/html
     networks:
-      - network42
-    restart: on-failure
-
-  mariadb:
-    build: ./requirements/mariadb
-    container_name: mariadb
-#    image: mariadb
-    env_file: .env
-    volumes:
-    - mariadb:/var/lib/mysql
-    networks:
-      - network42
+     - network42
     restart: on-failure
 
 volumes:
@@ -43,48 +47,3 @@ volumes:
 
 networks:
   network42:
-
-#version: '3.1'
-#
-#services:
-#
-#  nginx:
-#   build: requirements/nginx
-#   container_name: nginx
-#   restart: on-failure
-#   depends_on:
-#    - wordpress
-#   ports:
-#    - "443:443"
-#   volumes:
-#    - wordpress:/var/www/html
-#  db:
-#   image: mariadb
-#   restart: on-failure
-#   environment:
-#    MARIADB_ROOT_PASSWORD: rooted
-#    MARIADB_DATABASE: wordpress_db
-#	MARIADB_USER: user_wp
-#	MARIADB_PASSWORD: ok
-#   volumes:
-#    - mariadb:/var/lib/mysql
-#
-#  wordpress:
-#   build: requirements/wordpress
-#   container_name: wordpress
-#   restart: on-failure
-#   ports:
-#     - "9000:9000"
-#   environment:
-#     WORDPRESS_DB_HOST: db
-#     WORDPRESS_DB_USER: user_wp
-#     WORDPRESS_DB_PASSWORD: ok
-#     WORDPRESS_DB_NAME: wordpress_db
-#    volumes:
-#	 - wordpress:/var/www/html
-#volumes:
-# wordpress:
-# nginx:
-# db:
-##network:
-## network42:
