@@ -10,11 +10,11 @@ RUN chmod +x wp-cli.phar
 RUN cp wp-cli.phar /usr/local/bin/wp
 
 #Self managing folder: /var/www/html/wordpress
-WORKDIR /var/www/html/wordpress
+WORKDIR /var/www/html
 
 COPY conf.sh /tmp/conf.sh
 COPY ./www.conf /etc/php/7.3/www.conf
-COPY /conf/wp-config.php /var/www/html/wp-config.php
+#COPY /conf/wp-config.php /var/www/html/wp-config.php
 
 #Launcher
 ENTRYPOINT ["/bin/sh", "/tmp/conf.sh"]

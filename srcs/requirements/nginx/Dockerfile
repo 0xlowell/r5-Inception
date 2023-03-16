@@ -2,7 +2,7 @@
 FROM debian:buster
 
 RUN apt update -y && apt upgrade -y
-RUN apt install -y wget curl nginx openssl
+RUN apt install -y wget curl nginx openssl vim
 
 RUN mkdir -p /etc/nginx/ssl
 
