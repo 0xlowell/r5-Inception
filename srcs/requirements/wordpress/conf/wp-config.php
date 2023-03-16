@@ -1,9 +1,9 @@
 
 define( 'DB_NAME', getenv('$MARIADB_NAME') ); // Example MySQL database name
 
-define( 'DB_USER', getenv('WP_USER') ); // Example MySQL username
+define( 'DB_USER', getenv('MARIADB_USER') ); // Example MySQL username
 
-define( 'DB_PASSWORD', getenv('$WP_PASSWORD') ); // Example MySQL password
+define( 'DB_PASSWORD', getenv('MARIADB_PASSWORD') ); // Example MySQL password
 
 define( 'DB_HOST',  getenv('$HOSTNAME') ); // Example MySQL Database host
 

@@ -3,14 +3,14 @@ version: '3.9'
 services:
 
   wordpress:
-    build: ./requirements/wordpress
+    build: requirements/wordpress
     container_name: wordpress
     depends_on:
       - mariadb
     env_file:
       - .env
     volumes:
-      - wordpress:/var/www/html
+      - wordpress:/var/www/html/wordpress
     networks:
       - network42
     restart: on-failure
@@ -21,7 +21,7 @@ services:
     env_file:
       - .env
     volumes:
-      - wordpress:/var/www/html
+      - wordpress:/var/www/html/wordpress
     ports:
       - "443:443"
     networks:
@@ -29,7 +29,7 @@ services:
     restart: on-failure
 
   mariadb:
-    build: ./requirements/mariadb
+    build: requirements/mariadb
     container_name: mariadb
     env_file:
       - .env
