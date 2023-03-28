@@ -10,8 +10,10 @@ touch /run/php/php7.3-fpm.pid;
 chown -R www-data:www-data /var/www/*;
 chown -R 755 /var/www/*;
 
+# Downloads core WordPress files.
 wp core download  --allow-root
 
+# Generates a wp-config.php file.
 wp config create \
   --dbname=$MARIADB_NAME \
   --dbuser=$MARIADB_USER \
@@ -19,6 +21,7 @@ wp config create \
   --dbhost=$HOSTNAME \
   --dbcharset="utf8" --dbcollate="utf8_general_ci" --allow-root
 
+# Runs the standard WordPress installation process.
 wp core install \
   --url="$DOMAIN_NAME" \
   --title=$WP_TITLE \
@@ -26,10 +29,9 @@ wp core install \
   --admin_password=$WP_ADMIN_PASSWORD \
   --admin_email=$WP_ADMIN_EMAIL --skip-email --allow-root
 
+# Creates a new user.
 wp user create \
   $WP_USER \
   $WP_USER_EMAIL --role=author --user_pass=$WP_USER_PASSWORD --allow-root
-
-#wp theme install inspiro --activate --allow-root
 
 /usr/sbin/php-fpm7.3 -F -R
