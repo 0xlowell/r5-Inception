@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Cheking if the database is already created
+# Checking if the database is already created
 cat .setup 2>/dev/null
 
 if [ $? -ne 0 ]; then

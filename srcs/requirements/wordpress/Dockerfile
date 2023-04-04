@@ -9,12 +9,13 @@ RUN chmod +x wp-cli.phar
 
 RUN cp wp-cli.phar /usr/local/bin/wp
 
-#Self managing folder: /var/www/html/wordpress
 WORKDIR /var/www/html
 
+# Copy script to set up wordpress variables
 COPY conf.sh /tmp/conf.sh
+
+# PHP Pool Directives (default name is www.conf) PHP FastCGI Process Manager (PHP-FPM)
 COPY ./www.conf /etc/php/7.3/www.conf
-#COPY /conf/wp-config.php /var/www/html/wp-config.php
 
 #Launcher
 ENTRYPOINT ["/bin/sh", "/tmp/conf.sh"]
